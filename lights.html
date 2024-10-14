@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Traffic Lights</title>
+	</head>
+	<body>
+		<canvas id="light_canvas" width="200px" height="600px">
+		<button onclick="nextLight()">
+<script type="module">
+var currLight = 0;
+
+function drawLights(lights){
+	let ctx = document.getElementById("light_canvas").getContext("2d");
+	ctx.fillStyle="darkgray";
+	ctx.fillRect(0,0,200,600);
+	ctx.fillStyle= lights.red ? "red" : "lightgray";
+	ctx.beginPath();
+	ctx.ellipse(100,100,100,100,0,0,Math.PI*2);
+	ctx.fill();
+	ctx.closePath();
+}
+
+function lightsFromNum(n){
+	return {
+		red:true,
+		orange:false,
+		green:false,
+	}
+}
+
+window.nextLight = () => {
+	currLight += 1;
+	if (currLight >= 4) currLight = 0;
+	setLight(currLight)
+}
+drawLights(lightsFromNum(0));
+</script>
+
+	</body>
+</html>
